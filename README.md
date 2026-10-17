@@ -4,7 +4,7 @@ Sitio web profesional de la **Abogada Maria Paula Ramírez** (servicios jurídic
 Construido con **Astro 7** para generar HTML estático: máximo rendimiento y SEO, cero
 dependencias de servidor.
 
-> 🌐 Producción: **https://mariapaularamirez.pages.dev** (Cloudflare Pages)
+> 🌐 Producción: **https://mariapaularamirez.mariapaularamirez-web.workers.dev** (Cloudflare Workers)
 
 ---
 
@@ -29,7 +29,7 @@ dependencias de servidor.
 | Contenido | Content Collections (Markdown + Zod) |
 | SEO | `@astrojs/sitemap` + JSON-LD manual |
 | Imágenes | `astro:assets` + `sharp` (WebP automático) |
-| Hosting | Cloudflare Pages (HTTPS + CDN + `_headers`) |
+| Hosting | Cloudflare Workers (Pages + Workers unificados; `_headers` soportado) |
 
 ## 📁 Estructura
 
@@ -60,8 +60,9 @@ dependencias de servidor.
 ```bash
 npm install          # instalar dependencias
 npm run dev          # servidor de desarrollo (localhost:4321)
-npm run build        # generar sitio estático en dist/
-npm run preview      # previsualizar el build en local
+npm run build         # generar sitio estático en dist/
+npm run preview       # previsualizar localmente con wrangler dev
+npm run deploy        # build + publicar en Cloudflare (wrangler deploy)
 node scripts/generate-assets.mjs   # regenerar OG image e iconos
 ```
 
@@ -84,22 +85,30 @@ Contenido del artículo en Markdown...
 *Nota: el pie con disclaimer se agrega automáticamente al final.*
 ```
 
-3. Hacer `git push` — el sitio se redespliega solo.
+3. Publicar: `npm run deploy` (o pedir el despliegue al asistente).
 
-## 🚀 Despliegue en Cloudflare Pages
+## 🚀 Despliegue (Cloudflare Workers)
 
-1. Subir este repositorio a GitHub.
-2. En [Cloudflare Dashboard](https://dash.cloudflare.com) → **Workers & Pages** → **Create** →
-   **Pages** → **Connect to Git** → seleccionar `jsuzxx/MariaPaula_WebPage`.
-3. Build command: `npm run build` · Build output directory: `dist` · Framework preset: **Astro**.
-4. Deploy. El sitio quedará en `https://maripaularamirez.pages.dev`.
+Cloudflare unificó Pages dentro de **Workers** (2026), así que el sitio se despliega con
+Wrangler desde tu máquina:
 
-Cada `git push` a `main` redespliega automáticamente.
+```bash
+npx wrangler login    # solo la primera vez (abre el navegador)
+npm run deploy        # build + publica en Cloudflare
+```
+
+- Worker: `mariapaularamirez`
+- URL pública: **https://mariapaularamirez.mariapaularamirez-web.workers.dev**
+- El archivo `wrangler.jsonc` define el proyecto y la carpeta de assets (`./dist`).
+- Las cabeceras de `public/_headers` se aplican al desplegar (verificado en producción).
 
 ### Cambiar a dominio propio (cuando lo haya)
 
-En Cloudflare Dashboard → el proyecto → **Custom domains** → Add custom domain.
-No hay que cambiar nada del código: solo apuntar el dominio.
+1. Comprar el dominio (Cloudflare Registrar, Namecheap, etc.).
+2. Cloudflare Dashboard → **Workers & Pages** → el Worker → **Settings** → **Domains & Routes** →
+   **Add custom domain**.
+3. Actualizar el `site:` en `astro.config.mjs`, la URL del sitemap en `public/robots.txt` y volver a
+   `npm run deploy`. HTTPS se genera solo.
 
 ## 🔒 Seguridad
 
@@ -110,8 +119,9 @@ No hay que cambiar nada del código: solo apuntar el dominio.
 
 ## 🔍 Próximos pasos para posicionar en Google
 
-1. **Google Search Console**: verificar `mariapaularamirez.pages.dev` y enviar el sitemap
-   `https://mariapaularamirez.pages.dev/sitemap-index.xml`.
+1. **Google Search Console**: verificar `mariapaularamirez.mariapaularamirez-web.workers.dev` y
+   enviar el sitemap
+   `https://mariapaularamirez.mariapaularamirez-web.workers.dev/sitemap-index.xml`.
 2. **Google Business Profile**: crear la ficha del despacho (crítico para búsquedas locales
    como «abogada cerca de mí»).
 3. **Bing Webmaster Tools** (incluye Copilot): enviar el sitemap.
