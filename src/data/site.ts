@@ -21,7 +21,7 @@ export const SITE = {
   // Verificación de buscadores. Pega aquí SOLO el valor del código (lo que va
   // dentro de content="...") cuando lo obtengas; ver la guía en el README.
   // Se emiten automáticamente en el <head>.
-  googleSiteVerification: '', // Google Search Console  → <meta name="google-site-verification">
+  googleSiteVerification: 'scCB6iftgmzar6UjxMVMZudkpuXTixiz0GXaer1e2bw', // Google Search Console  → <meta name="google-site-verification">
   bingSiteVerification: '', // Bing Webmaster Tools   → <meta name="msvalidate.01">
 } as const;
 
