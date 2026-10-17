@@ -4,7 +4,7 @@ Sitio web profesional de la **Abogada Maria Paula Ramírez** (servicios jurídic
 Construido con **Astro 7** para generar HTML estático: máximo rendimiento y SEO, cero
 dependencias de servidor.
 
-> 🌐 Producción: **https://mariapaularamirez.mariapaularamirez-web.workers.dev** (Cloudflare Workers)
+> 🌐 Producción: **https://www.mariapaularamirez-web.workers.dev** (Cloudflare Workers)
 
 ---
 
@@ -97,8 +97,8 @@ npx wrangler login    # solo la primera vez (abre el navegador)
 npm run deploy        # build + publica en Cloudflare
 ```
 
-- Worker: `mariapaularamirez`
-- URL pública: **https://mariapaularamirez.mariapaularamirez-web.workers.dev**
+- Worker: `www`
+- URL pública: **https://www.mariapaularamirez-web.workers.dev**
 - El archivo `wrangler.jsonc` define el proyecto y la carpeta de assets (`./dist`).
 - Las cabeceras de `public/_headers` se aplican al desplegar (verificado en producción).
 
@@ -119,9 +119,9 @@ npm run deploy        # build + publica en Cloudflare
 
 ## 🔍 Próximos pasos para posicionar en Google
 
-1. **Google Search Console**: verificar `mariapaularamirez.mariapaularamirez-web.workers.dev` y
+1. **Google Search Console**: verificar `www.mariapaularamirez-web.workers.dev` y
    enviar el sitemap
-   `https://mariapaularamirez.mariapaularamirez-web.workers.dev/sitemap-index.xml`.
+   `https://www.mariapaularamirez-web.workers.dev/sitemap-index.xml`.
 2. **Google Business Profile**: crear la ficha del despacho (crítico para búsquedas locales
    como «abogada cerca de mí»).
 3. **Bing Webmaster Tools** (incluye Copilot): enviar el sitemap.

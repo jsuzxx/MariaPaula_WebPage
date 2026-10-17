@@ -7,7 +7,7 @@ import cloudflare from '@astrojs/cloudflare';
 // https://astro.build/config
 export default defineConfig({
   // URL canónica del sitio en producción (usada por sitemap, canonical y OG)
-  site: 'https://mariapaularamirez.mariapaularamirez-web.workers.dev',
+  site: 'https://www.mariapaularamirez-web.workers.dev',
   integrations: [sitemap()],
   compressHTML: true,
 

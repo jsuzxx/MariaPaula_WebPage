@@ -2,4 +2,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://mariapaularamirez.mariapaularamirez-web.workers.dev/sitemap-index.xml
+Sitemap: https://www.mariapaularamirez-web.workers.dev/sitemap-index.xml
