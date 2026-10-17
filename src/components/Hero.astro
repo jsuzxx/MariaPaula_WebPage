@@ -43,7 +43,6 @@ import { WA_DEFAULT } from '../data/site';
             alt="Abogada Maria Paula Ramírez"
             class="h-img"
             width={680}
-            height={907}
             loading="eager"
             fetchpriority="high"
           />
@@ -80,7 +79,7 @@ import { WA_DEFAULT } from '../data/site';
   .h-frame { position:relative;width:340px; }
   .h-frame::before { content:'';position:absolute;top:-16px;right:-16px;width:100%;height:100%;border:1px solid rgba(201,169,110,.3);border-radius:var(--rxl);z-index:0; }
   .h-frame::after  { content:'';position:absolute;bottom:-24px;left:-24px;width:80px;height:80px;border-bottom:2px solid var(--gold);border-left:2px solid var(--gold);z-index:0; }
-  .h-img { position:relative;z-index:1;width:100%;aspect-ratio:3/4;border-radius:var(--rxl);object-fit:cover;object-position:top; }
+  .h-img { position:relative;z-index:1;width:100%;height:auto;display:block;border-radius:var(--rxl); }
   .h-badge { position:absolute;bottom:2rem;left:-2rem;background:rgba(255,255,255,.06);backdrop-filter:blur(16px);border:1px solid rgba(255,255,255,.12);border-radius:var(--rl);padding:1.1rem 1.4rem;display:flex;align-items:center;gap:1rem;z-index:2;animation:fbadge 4s ease-in-out infinite; }
   @keyframes fbadge{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
   .h-bdot { width:10px;height:10px;background:#25D366;border-radius:50%;box-shadow:0 0 0 4px rgba(37,211,102,.2);flex-shrink:0;animation:pg 2s ease-in-out infinite; }
