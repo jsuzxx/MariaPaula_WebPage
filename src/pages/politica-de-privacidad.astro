@@ -1,0 +1,84 @@
+---
+// Política de privacidad conforme a la Ley 1581 de 2012 (Ley de Protección de Datos Personales de Colombia)
+// y el Decreto 1377 de 2013.
+import BaseLayout from '../layouts/BaseLayout.astro';
+import CustomCursor from '../components/CustomCursor.astro';
+import Nav from '../components/Nav.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+import WhatsAppFloat from '../components/WhatsAppFloat.astro';
+import { SITE } from '../data/site';
+---
+
+<BaseLayout
+  title={`Política de privacidad — ${SITE.fullName}`}
+  description="Política de privacidad y tratamiento de datos personales del sitio de la Abogada Maria Paula Ramírez, conforme a la Ley 1581 de 2012 de Colombia."
+  noindex={true}
+>
+  <CustomCursor />
+  <Nav />
+  <main id="main">
+    <header class="page-hero">
+      <div class="h-g1" aria-hidden="true"></div>
+      <div class="container">
+        <nav class="breadcrumb" aria-label="Migas de pan">
+          <a href="/">Inicio</a> / Política de privacidad
+        </nav>
+        <h1>Política de <em>privacidad</em></h1>
+      </div>
+    </header>
+
+    <div class="legal-wrap">
+      <span class="legal-updated">Última actualización: octubre de 2026</span>
+
+      <p>
+        Esta política describe cómo se tratan los datos personales de los visitantes y clientes de
+        este sitio, de conformidad con la <strong>Ley 1581 de 2012</strong>, el
+        <strong>Decreto 1377 de 2013</strong> y demás normas complementarias de la República de
+        {SITE.country}.
+      </p>
+
+      <h2>1. Responsable del tratamiento</h2>
+      <p>
+        La responsable del tratamiento de los datos personales recolectados es
+        <strong>{SITE.fullName}</strong>, contactable en
+        <a href={`mailto:${SITE.email}`}>{SITE.email}</a> y en el WhatsApp {SITE.phoneDisplay}.
+      </p>
+
+      <h2>2. Datos que se recolectan</h2>
+      <p>Este sitio es un sitio estático de información. No existen formularios ni bases de datos. Los datos personales que usted decida compartir se recolectan <strong>únicamente cuando usted nos escribe directamente</strong> por WhatsApp o correo electrónico, y pueden incluir:</p>
+      <ul>
+        <li>Su nombre y datos de contacto (teléfono, correo).</li>
+        <li>La información que usted decida incluir en su mensaje sobre su situación legal.</li>
+      </ul>
+
+      <h2>3. Finalidad del tratamiento</h2>
+      <p>Los datos recolectados se tratan exclusivamente para:</p>
+      <ul>
+        <li>Responder sus consultas y solicitudes de información.</li>
+        <li>Prestar los servicios jurídicos contratados o por contratar.</li>
+        <li>Gestionar la relación profesional y el cobro correspondiente.</li>
+      </ul>
+
+      <h2>4. Derechos del titular (derechos ARCO)</h2>
+      <p>Usted tiene derecho a conocer, actualizar, rectificar y solicitar la supresión de sus datos personales, así como a revocar la autorización otorgada, cuando lo considere procedente. Para ejercer cualquiera de estos derechos, escriba a <a href={`mailto:${SITE.email}`}>{SITE.email}</a> indicando su solicitud; será atendido en los plazos que fija la ley.</p>
+
+      <h2>5. Seguridad de la información</h2>
+      <p>El sitio se sirve mediante conexión cifrada (HTTPS) y aplica cabeceras de seguridad estándar de la industria. La información que usted envía por WhatsApp o correo se rige además por las políticas de seguridad de dichos servicios.</p>
+
+      <h2>6. Cookies y tecnologías de rastreo</h2>
+      <p>Este sitio <strong>no utiliza cookies propias ni herramientas de analítica de terceros</strong>. Si en el futuro se incorporan (por ejemplo, Google Analytics), esta política se actualizará y se solicitará el consentimiento previo cuando la ley lo exija.</p>
+
+      <h2>7. Cambios en esta política</h2>
+      <p>Cualquier modificación de esta política será publicada en esta misma página con su fecha de actualización.</p>
+
+      <h2>8. Autoridad de control</h2>
+      <p>
+        La Superintendencia de Industria y Comercio es la autoridad de protección de datos personales
+        en {SITE.country}. Puede consultar sus derechos en
+        <a href="https://www.sic.gov.co" target="_blank" rel="noopener noreferrer">www.sic.gov.co</a>.
+      </p>
+    </div>
+  </main>
+  <SiteFooter />
+  <WhatsAppFloat />
+</BaseLayout>

@@ -1,0 +1,93 @@
+---
+// Aviso legal: condiciones de uso del sitio y titularidad.
+import BaseLayout from '../layouts/BaseLayout.astro';
+import CustomCursor from '../components/CustomCursor.astro';
+import Nav from '../components/Nav.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+import WhatsAppFloat from '../components/WhatsAppFloat.astro';
+import { SITE } from '../data/site';
+---
+
+<BaseLayout
+  title={`Aviso legal — ${SITE.fullName}`}
+  description="Aviso legal del sitio web de la Abogada Maria Paula Ramírez: condiciones de uso, propiedad intelectual y responsabilidades."
+  noindex={true}
+>
+  <CustomCursor />
+  <Nav />
+  <main id="main">
+    <header class="page-hero">
+      <div class="h-g1" aria-hidden="true"></div>
+      <div class="container">
+        <nav class="breadcrumb" aria-label="Migas de pan">
+          <a href="/">Inicio</a> / Aviso legal
+        </nav>
+        <h1>Aviso <em>legal</em></h1>
+      </div>
+    </header>
+
+    <div class="legal-wrap">
+      <span class="legal-updated">Última actualización: octubre de 2026</span>
+
+      <h2>1. Titularidad del sitio</h2>
+      <p>
+        Este sitio web es de titularidad de <strong>{SITE.fullName}</strong>, profesional del
+        derecho radicada en {SITE.country}, identificable por medio de sus canales de contacto:
+        correo electrónico {SITE.email} y WhatsApp {SITE.phoneDisplay}.
+      </p>
+
+      <h2>2. Objeto</h2>
+      <p>
+        El sitio tiene como finalidad dar a conocer los servicios jurídicos ofrecidos, publicar
+        contenido informativo general y facilitar los canales de comunicación con posibles
+        clientes. El uso del sitio implica la aceptación de este aviso legal.
+      </p>
+
+      <h2>3. Naturaleza del contenido</h2>
+      <p>
+        Los artículos del blog y la información publicada tienen carácter
+        <strong>general e informativo</strong>. No constituyen asesoría jurídica, opinión
+        profesional ni compromiso de resultados sobre ningún caso en particular. Cada situación
+        legal es única y requiere una evaluación individual. Para información aplicable a su caso,
+        le recomiendo contactarme directamente.
+      </p>
+
+      <h2>4. Propiedad intelectual</h2>
+      <p>
+        Todos los contenidos de este sitio (textos, diseño, código, tipografías, imágenes y marca)
+        están protegidos por la normativa de propiedad intelectual e industrial. No se permite su
+        reproducción, distribución o transformación total o parcial sin autorización previa y
+        escrita de la titular.
+      </p>
+
+      <h2>5. Enlaces externos</h2>
+      <p>
+        Este sitio enlaza a servicios de terceros (como WhatsApp). El acceso a dichos servicios se
+        rige por sus propios términos y políticas de privacidad, ajenos a este sitio.
+      </p>
+
+      <h2>6. Responsabilidad</h2>
+      <p>
+        Se procura que la información sea verificada y esté actualizada, pero no se garantiza la
+        ausencia de errores u omisiones. La titular no se responsabiliza por decisiones tomadas
+        exclusivamente con base en el contenido informativo de este sitio.
+      </p>
+
+      <h2>7. Legislación aplicable</h2>
+      <p>
+        Este aviso legal se rige por las leyes de la República de {SITE.country}. Para cualquier
+        controversia serán competentes las autoridades judiciales que correspondan conforme a la
+        ley.
+      </p>
+
+      <h2>8. Contacto</h2>
+      <p>
+        Para preguntas sobre este aviso puede escribir a
+        <a href={`mailto:${SITE.email}`}>{SITE.email}</a> o visitar la
+        <a href="/#contacto">página de contacto</a>.
+      </p>
+    </div>
+  </main>
+  <SiteFooter />
+  <WhatsAppFloat />
+</BaseLayout>

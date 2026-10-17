@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <rect width="64" height="64" rx="14" fill="#08172E"/>
+  <rect x="4" y="4" width="56" height="56" rx="11" fill="none" stroke="#C9A96E" stroke-opacity=".45" stroke-width="1.5"/>
+  <text x="32" y="41" font-family="Georgia, 'Times New Roman', serif" font-size="26" font-weight="700" fill="#C9A96E" text-anchor="middle" letter-spacing="1">MP</text>
+  <rect x="22" y="46" width="20" height="1.5" fill="#C9A96E" opacity=".6"/>
+</svg>

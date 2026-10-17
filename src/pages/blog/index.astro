@@ -1,0 +1,57 @@
+---
+// Listado completo del blog jurídico.
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import CustomCursor from '../../components/CustomCursor.astro';
+import Nav from '../../components/Nav.astro';
+import BlogPreview from '../../components/BlogPreview.astro';
+import Contact from '../../components/Contact.astro';
+import SiteFooter from '../../components/SiteFooter.astro';
+import WhatsAppFloat from '../../components/WhatsAppFloat.astro';
+import { getCollection } from 'astro:content';
+import { SITE } from '../../data/site';
+
+const posts = (await getCollection('blog')).sort(
+  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+);
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Blog',
+  name: 'Blog jurídico de Maria Paula Ramírez',
+  description:
+    'Artículos sobre derechos fundamentales, derecho de familia, contratos, derecho laboral y sucesiones en Colombia.',
+  url: `${SITE.url}/blog/`,
+  inLanguage: 'es-CO',
+  author: { '@type': 'Person', name: SITE.fullName },
+};
+---
+
+<BaseLayout
+  title={`Blog jurídico — ${SITE.fullName}`}
+  description="Artículos sobre derechos fundamentales, familia, contratos, derecho laboral y sucesiones en Colombia. Información legal clara y práctica de la Abogada Maria Paula Ramírez."
+  jsonLd={jsonLd}
+>
+  <CustomCursor />
+  <Nav />
+  <main id="main">
+    <header class="page-hero">
+      <div class="h-g1" aria-hidden="true"></div>
+      <div class="container">
+        <nav class="breadcrumb" aria-label="Migas de pan">
+          <a href="/">Inicio</a> / Blog
+        </nav>
+        <div class="eyebrow" style="margin-bottom:1rem">
+          <div class="eline"></div><span class="etxt" style="color:rgba(201,169,110,.8)">Blog jurídico</span>
+        </div>
+        <h1>Información legal <em>para todos</em></h1>
+        <p class="ph-meta">
+          <span>{posts.length} artículos</span><span>Actualizado regularmente</span>
+        </p>
+      </div>
+    </header>
+    <BlogPreview posts={posts} variant="uniform" />
+    <Contact />
+  </main>
+  <SiteFooter />
+  <WhatsAppFloat />
+</BaseLayout>

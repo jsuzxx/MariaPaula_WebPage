@@ -1,0 +1,80 @@
+---
+// Sección "Sobre mí": bio profesional con foto y cita destacada.
+import { Image } from 'astro:assets';
+import foto from '../assets/foto-mariapaula.jpg';
+import { waLink } from '../data/site';
+---
+
+<section id="sobre-mi" aria-label="Información profesional">
+  <div class="container">
+    <div class="ab-layout">
+      <div class="ab-visual rv fl">
+        <div class="ab-gline" aria-hidden="true"></div>
+        <Image
+          src={foto}
+          alt="Retrato de la Abogada Maria Paula Ramírez"
+          class="ab-img"
+          width={880}
+          height={1100}
+          loading="lazy"
+        />
+        <div class="ab-card" aria-hidden="true">
+          <div class="bn">4</div><div class="bl">Servicios jurídicos</div>
+        </div>
+      </div>
+      <div class="ab-content">
+        <div class="eyebrow rv" style="margin-bottom:1.5rem">
+          <div class="eline"></div><span class="etxt">Sobre mí</span>
+        </div>
+        <h2 class="rv d1">Una abogada que escucha<br />antes de <em>actuar</em></h2>
+        <p class="rv d2" style="margin-top:1rem">
+          Soy Maria Paula Ramírez, abogada profesional con vocación de servicio hacia las personas.
+          Mi práctica jurídica está fundada en la escucha activa, la comunicación clara y el
+          compromiso real con cada caso.
+        </p>
+        <p class="rv d3">
+          Entiendo que los asuntos legales pueden generar incertidumbre. Por eso trabajo para que
+          usted siempre sepa qué está pasando, en un lenguaje comprensible y sin tecnicismos
+          innecesarios.
+        </p>
+        <div class="ab-quote rv d4">
+          <p>El amor por servir es lo que guía cada caso que tomo.</p>
+          <cite>— Abogada Maria Paula Ramírez</cite>
+        </div>
+        <a
+          href={waLink('Hola, quisiera hablar sobre mi caso.')}
+          class="btn btn-navy rv d5"
+          style="margin-top:2rem"
+          target="_blank"
+          rel="noopener noreferrer">Hablemos de su caso</a
+        >
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  #sobre-mi { padding:7rem 0;background:var(--off-white);position:relative;overflow:hidden; }
+  #sobre-mi::before { content:'LEX';position:absolute;right:-2rem;top:50%;transform:translateY(-50%);font-family:var(--fd);font-size:22rem;font-weight:700;color:rgba(8,23,46,.03);letter-spacing:-.05em;pointer-events:none;user-select:none;line-height:1; }
+  .ab-layout { display:grid;grid-template-columns:1fr 1.2fr;gap:6rem;align-items:center;position:relative;z-index:1; }
+  .ab-visual { position:relative; }
+  .ab-gline { position:absolute;top:10%;left:-2rem;width:3px;height:80%;background:linear-gradient(to bottom,transparent,var(--gold),transparent);border-radius:2px; }
+  .ab-img { width:100%;aspect-ratio:4/5;border-radius:var(--rxl);object-fit:cover;object-position:top;box-shadow:0 30px 80px rgba(8,23,46,.2); }
+  .ab-card { position:absolute;bottom:-1.5rem;right:-2rem;background:var(--navy);border-radius:var(--rl);padding:1.4rem 1.8rem;box-shadow:0 20px 60px rgba(8,23,46,.3);min-width:180px; }
+  .ab-card .bn { font-family:var(--fd);font-size:3rem;color:var(--gold);font-weight:400;line-height:1; }
+  .ab-card .bl { font-size:.72rem;color:rgba(255,255,255,.45);letter-spacing:.1em;text-transform:uppercase;margin-top:.3rem; }
+  .ab-content h2 { font-family:var(--fd);font-size:clamp(2rem,3.5vw,3rem);color:var(--navy);line-height:1.2;font-weight:400;margin-bottom:.5rem; }
+  .ab-content h2 :global(em) { font-style:italic;color:var(--accent); }
+  .ab-content :global(p) { color:var(--gray-600);margin-bottom:1.2rem;font-size:1rem;line-height:1.8; }
+  .ab-quote { margin:2rem 0;padding:1.8rem 2rem;background:var(--navy);border-radius:var(--rl);position:relative;overflow:hidden; }
+  .ab-quote::before { content:'"';position:absolute;top:-1rem;left:1rem;font-family:var(--fd);font-size:8rem;color:var(--gold);opacity:.15;line-height:1;pointer-events:none; }
+  .ab-quote :global(p) { font-family:var(--fd);font-size:1.3rem;font-style:italic;color:var(--white);margin:0;position:relative;z-index:1; }
+  .ab-quote cite { display:block;font-family:var(--fb);font-size:.72rem;font-style:normal;color:var(--gold);letter-spacing:.15em;text-transform:uppercase;margin-top:.8rem; }
+
+  @media (max-width: 900px) {
+    .ab-layout { grid-template-columns: 1fr; gap: 3rem; }
+  }
+  @media (max-width: 768px) {
+    .ab-card { right: 1rem; }
+  }
+</style>

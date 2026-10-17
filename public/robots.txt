@@ -1,0 +1,5 @@
+# robots.txt — permite toda la indexación y declara el sitemap
+User-agent: *
+Allow: /
+
+Sitemap: https://mariapaularamirez.pages.dev/sitemap-index.xml

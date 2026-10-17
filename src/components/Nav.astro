@@ -1,0 +1,97 @@
+---
+// Barra de navegación fija con menú móvil.
+import { SITE, WA_DEFAULT } from '../data/site';
+---
+
+<nav id="nav" aria-label="Navegación principal">
+  <div class="container ni">
+    <a href="/" class="nl">
+      {SITE.name}
+      <span>{SITE.tagline}</span>
+    </a>
+    <button class="ntog" id="ntog" aria-label="Abrir menú" aria-expanded="false" aria-controls="nlinks">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="nlinks" id="nlinks">
+      <li><a href="/">Inicio</a></li>
+      <li><a href="/#sobre-mi">Sobre mí</a></li>
+      <li><a href="/#servicios">Servicios</a></li>
+      <li><a href="/blog">Blog</a></li>
+      <li><a href="/#contacto">Contacto</a></li>
+      <li>
+        <a href={WA_DEFAULT} class="nwa" target="_blank" rel="noopener noreferrer">● WhatsApp</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<style>
+  #nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    padding: 1.4rem 0;
+    transition: all var(--t);
+  }
+  #nav.sc {
+    background: rgba(8, 23, 46, 0.97);
+    backdrop-filter: blur(20px);
+    padding: 0.9rem 0;
+    box-shadow:
+      0 1px 0 rgba(255, 255, 255, 0.06),
+      0 8px 32px rgba(0, 0, 0, 0.3);
+  }
+  .ni { display: flex; align-items: center; justify-content: space-between; }
+  .nl { font-family: var(--fd); font-size: 1.05rem; color: var(--white); line-height: 1.2; }
+  .nl span { display: block; font-size: 0.58rem; font-family: var(--fb); color: var(--gold); letter-spacing: 0.25em; text-transform: uppercase; font-weight: 500; }
+  .nlinks { display: flex; align-items: center; gap: 2.5rem; list-style: none; }
+  .nlinks a { font-size: 0.8rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(255, 255, 255, 0.65); transition: color var(--t); position: relative; }
+  .nlinks a::after { content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 1px; background: var(--gold); transition: width var(--t); }
+  .nlinks a:hover { color: var(--white); }
+  .nlinks a:hover::after { width: 100%; }
+  .nwa { background: var(--gold) !important; color: var(--navy) !important; padding: 0.5rem 1.2rem; border-radius: 100px; font-weight: 600 !important; }
+  .nwa::after { display: none !important; }
+  .nwa:hover { background: #DFB97A !important; }
+  .ntog { display: none; flex-direction: column; gap: 5px; background: none; border: none; padding: 4px; }
+  .ntog span { display: block; width: 24px; height: 1.5px; background: var(--white); border-radius: 2px; transition: var(--t); }
+
+  @media (max-width: 768px) {
+    .nlinks {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      background: rgba(8, 23, 46, 0.98);
+      backdrop-filter: blur(20px);
+      flex-direction: column;
+      padding: 2rem 5%;
+      gap: 1.5rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.06);
+    }
+    .nlinks.open { display: flex; }
+    .nlinks a { font-size: 1rem; }
+    .ntog { display: flex; }
+  }
+</style>
+
+<script>
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => nav?.classList.toggle('sc', scrollY > 60), { passive: true });
+
+  const tog = document.getElementById('ntog');
+  const lnks = document.getElementById('nlinks');
+  tog?.addEventListener('click', () => {
+    const open = lnks?.classList.toggle('open') ?? false;
+    tog.setAttribute('aria-expanded', String(open));
+    tog.setAttribute('aria-label', open ? 'Cerrar menú' : 'Abrir menú');
+  });
+  lnks?.querySelectorAll('a').forEach((a) =>
+    a.addEventListener('click', () => {
+      lnks.classList.remove('open');
+      tog?.setAttribute('aria-expanded', 'false');
+    })
+  );
+</script>

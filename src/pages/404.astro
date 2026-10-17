@@ -1,0 +1,21 @@
+---
+// Página de error 404.
+import BaseLayout from '../layouts/BaseLayout.astro';
+import CustomCursor from '../components/CustomCursor.astro';
+import Nav from '../components/Nav.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+import WhatsAppFloat from '../components/WhatsAppFloat.astro';
+---
+
+<BaseLayout title="Página no encontrada" description="La página que busca no existe." noindex={true}>
+  <CustomCursor />
+  <Nav />
+  <main id="main" class="nf-wrap">
+    <div class="nf-num">404</div>
+    <h1>Esta página no existe</h1>
+    <p>Es posible que el enlace esté desactualizado o que la página se haya movido.</p>
+    <a href="/" class="btn btn-gold">Volver al inicio</a>
+  </main>
+  <SiteFooter />
+  <WhatsAppFloat />
+</BaseLayout>

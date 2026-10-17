@@ -1,0 +1,25 @@
+---
+// Pie de página con navegación, enlaces legales y copyright dinámico.
+import { SITE } from '../data/site';
+---
+
+<footer>
+  <div class="container ft-inner">
+    <div class="ft-brand">
+      <strong>{SITE.fullName}</strong>
+      <span>{SITE.tagline}</span>
+    </div>
+    <ul class="ft-nav">
+      <li><a href="/">Inicio</a></li>
+      <li><a href="/#sobre-mi">Sobre mí</a></li>
+      <li><a href="/#servicios">Servicios</a></li>
+      <li><a href="/blog">Blog</a></li>
+      <li><a href="/#contacto">Contacto</a></li>
+    </ul>
+    <ul class="ft-legal">
+      <li><a href="/aviso-legal">Aviso legal</a></li>
+      <li><a href="/politica-de-privacidad">Política de privacidad</a></li>
+    </ul>
+    <p style="font-size: 0.75rem">© {SITE.year} · Todos los derechos reservados</p>
+  </div>
+</footer>

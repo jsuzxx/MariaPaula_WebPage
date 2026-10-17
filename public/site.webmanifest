@@ -1,0 +1,14 @@
+{
+  "name": "Maria Paula Ramírez — Servicios Jurídicos",
+  "short_name": "MP Jurídico",
+  "description": "Servicios jurídicos en Colombia: asesorías, acompañamiento legal, demandas y acciones de tutela.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#08172E",
+  "theme_color": "#08172E",
+  "lang": "es-CO",
+  "icons": [
+    { "src": "/img/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "/img/icon-512.png", "sizes": "512x512", "type": "image/png" }
+  ]
+}

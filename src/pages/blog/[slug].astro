@@ -1,0 +1,92 @@
+---
+// Página de cada artículo del blog (generada desde Markdown).
+import { getCollection, render } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import CustomCursor from '../../components/CustomCursor.astro';
+import Nav from '../../components/Nav.astro';
+import BlogPreview from '../../components/BlogPreview.astro';
+import Contact from '../../components/Contact.astro';
+import SiteFooter from '../../components/SiteFooter.astro';
+import WhatsAppFloat from '../../components/WhatsAppFloat.astro';
+import { SITE, waLink } from '../../data/site';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog');
+  return posts.map((post) => ({ params: { slug: post.id }, props: { post } }));
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+
+const fmt = new Intl.DateTimeFormat('es-CO', { day: 'numeric', month: 'long', year: 'numeric' });
+const canonical = new URL(`/blog/${post.id}/`, SITE.url).href;
+
+// Datos estructurados del artículo (aparecen en Google como resultado enriquecido)
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'BlogPosting',
+  headline: post.data.title,
+  description: post.data.description,
+  datePublished: post.data.pubDate.toISOString(),
+  inLanguage: 'es-CO',
+  mainEntityOfPage: canonical,
+  author: { '@type': 'Person', name: SITE.fullName, jobTitle: 'Abogada' },
+  publisher: { '@type': 'Person', name: SITE.fullName },
+};
+
+// Artículos relacionados: los 3 más recientes distintos al actual
+const related = (await getCollection('blog'))
+  .filter((p) => p.id !== post.id)
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+  .slice(0, 3);
+---
+
+<BaseLayout
+  title={`${post.data.title} — ${SITE.fullName}`}
+  description={post.data.description}
+  ogType="article"
+  publishedTime={post.data.pubDate}
+  jsonLd={jsonLd}
+>
+  <CustomCursor />
+  <Nav />
+  <main id="main">
+    <header class="page-hero">
+      <div class="h-g1" aria-hidden="true"></div>
+      <div class="container">
+        <nav class="breadcrumb" aria-label="Migas de pan">
+          <a href="/">Inicio</a> / <a href="/blog">Blog</a> / {post.data.category}
+        </nav>
+        <div class="eyebrow" style="margin-bottom:1rem">
+          <div class="eline"></div><span class="etxt" style="color:rgba(201,169,110,.8)">{post.data.category}</span>
+        </div>
+        <h1>{post.data.title}</h1>
+        <p class="ph-meta">
+          <span>{SITE.fullName}</span><span>{fmt.format(post.data.pubDate)}</span><span
+            >{post.data.minutesRead} min de lectura</span
+          >
+        </p>
+      </div>
+    </header>
+
+    <article class="prose">
+      <Content />
+    </article>
+
+    <aside class="post-cta">
+      <h2>¿Tiene un caso <em>similar</em>?</h2>
+      <p>Cuénteme su situación y reciba una orientación personalizada.</p>
+      <a
+        href={waLink(`Hola, leí su artículo "${post.data.title}" y quisiera consultar sobre mi caso.`)}
+        class="btn btn-wa"
+        target="_blank"
+        rel="noopener noreferrer">Consultar por WhatsApp</a
+      >
+    </aside>
+
+    <BlogPreview posts={related} variant="uniform" title={<>Otros artículos que le pueden <em>interesar</em></>} />
+    <Contact />
+  </main>
+  <SiteFooter />
+  <WhatsAppFloat />
+</BaseLayout>
