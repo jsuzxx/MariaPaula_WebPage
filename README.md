@@ -15,9 +15,11 @@ dependencias de servidor.
   Twitter Cards, `sitemap.xml` automático, `robots.txt`, datos estructurados
   (`LegalService` + `BlogPosting`) y URLs limpias.
 - **Blog jurídico en Markdown** — publicar un artículo es crear un archivo `.md`.
-- **Seguridad**: cabeceras HTTP (`_headers`): CSP, HSTS, X-Frame-Options, nosniff, etc.
+- **Seguridad**: cabeceras HTTP (`_headers`: HSTS, X-Frame-Options, nosniff…) y **CSP estricta generada por Astro** con hashes de los scripts inline.
 - **Legal (Colombia)**: aviso legal y política de privacidad conforme a la Ley 1581 de 2012.
 - **Imágenes optimizadas**: la foto se convierte a WebP en el build (73 KB → 24 KB).
+- **Tipografías auto-alojadas**: Playfair Display y Outfit se descargan en el build y se sirven desde el propio sitio (sin Google Fonts) + `preload`.
+- **Rendimiento verificado**: Lighthouse 96 rendimiento · 100 accesibilidad · 100 buenas prácticas · 100 SEO.
 - **Accesibilidad**: `lang="es"`, skip-link, landmarks ARIA, `prefers-reduced-motion`.
 - **Responsive** con menú móvil y cursor personalizado (solo en dispositivos con ratón).
 
@@ -112,7 +114,9 @@ npm run deploy        # build + publica en Cloudflare
 
 ## 🔒 Seguridad
 
-- Cabeceras HTTP en `public/_headers` (CSP estricta, HSTS, X-Frame-Options DENY, nosniff…).
+- Cabeceras HTTP en `public/_headers` (HSTS, X-Frame-Options DENY, nosniff, Referrer-Policy…).
+- **CSP estricta** generada por Astro (`security.csp` en `astro.config.mjs`) con hashes de los scripts inline; `script-src 'self'` sin `'unsafe-inline'`.
+- Fuentes auto-alojadas (sin peticiones a Google Fonts): más privacidad y menos dependencias externas.
 - Sin cookies, sin trackers, sin formularios: attack surface mínimo.
 - Dependencias auditadas (`npm audit` → 0 vulnerabilidades).
 - HTTPS automático en Cloudflare.
