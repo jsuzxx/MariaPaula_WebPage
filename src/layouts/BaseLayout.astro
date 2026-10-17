@@ -69,6 +69,14 @@ const jsonLdBlocks = [
     <meta name="theme-color" content="#08172E" />
     <meta name="format-detection" content="telephone=yes" />
 
+    <!-- Verificación de buscadores (se emiten solo si hay valor en site.ts) -->
+    {SITE.googleSiteVerification && (
+      <meta name="google-site-verification" content={SITE.googleSiteVerification} />
+    )}
+    {SITE.bingSiteVerification && (
+      <meta name="msvalidate.01" content={SITE.bingSiteVerification} />
+    )}
+
     <!-- Favicon e iconos -->
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="apple-touch-icon" href="/img/apple-touch-icon.png" sizes="180x180" />

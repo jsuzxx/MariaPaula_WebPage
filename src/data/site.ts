@@ -17,6 +17,12 @@ export const SITE = {
   country: 'Colombia',
   country_code: 'CO',
   year: new Date().getFullYear(),
+
+  // Verificación de buscadores. Pega aquí SOLO el valor del código (lo que va
+  // dentro de content="...") cuando lo obtengas; ver la guía en el README.
+  // Se emiten automáticamente en el <head>.
+  googleSiteVerification: '', // Google Search Console  → <meta name="google-site-verification">
+  bingSiteVerification: '', // Bing Webmaster Tools   → <meta name="msvalidate.01">
 } as const;
 
 /** Construye un enlace de WhatsApp con mensaje predefinido. */

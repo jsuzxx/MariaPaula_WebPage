@@ -121,17 +121,58 @@ npm run deploy        # build + publica en Cloudflare
 - Dependencias auditadas (`npm audit` → 0 vulnerabilidades).
 - HTTPS automático en Cloudflare.
 
-## 🔍 Próximos pasos para posicionar en Google
+## 🔍 Cómo aparecer en Google (paso a paso)
 
-1. **Google Search Console**: verificar `www.mariapaularamirez-web.workers.dev` y
-   enviar el sitemap
-   `https://www.mariapaularamirez-web.workers.dev/sitemap-index.xml`.
-2. **Google Business Profile**: crear la ficha del despacho (crítico para búsquedas locales
-   como «abogada cerca de mí»).
-3. **Bing Webmaster Tools** (incluye Copilot): enviar el sitemap.
-4. Publicar **1-2 artículos nuevos al mes** en el blog (el contenido fresco es la mejor palanca SEO).
-5. Si más adelante se compra dominio propio: repetir verificación en Search Console con el
-   nuevo dominio.
+> El sitio ya está listo para indexarse (sitemap, `robots.txt`, datos estructurados y SEO
+> técnico). Falta **registrarlo** en las herramientas de Google/Bing, que requieren tu cuenta.
+
+### 1. Google Search Console (obligatorio)
+
+1. Entra en <https://search.google.com/search-console> con tu cuenta de Google.
+2. **Añadir propiedad** → elige **"Prefijo de la URL"** (NO "Dominio": `workers.dev` no permite
+   verificación por DNS) → escribe exactamente:
+   `https://www.mariapaularamirez-web.workers.dev/`
+3. Método de verificación → **"Etiqueta HTML"**. Google te da algo como:
+   `<meta name="google-site-verification" content="AbC123..." />`
+4. Copia **solo el valor** de `content="..."` y pégalo en `src/data/site.ts`, en el campo
+   `googleSiteVerification`.
+5. Publica: `npm run deploy` (o pídeselo al asistente). La etiqueta ya se inserta sola en el
+   `<head>` de todas las páginas.
+6. Vuelve a Search Console y pulsa **"Verificar"**.
+7. En **"Sitemaps"**, envía: `sitemap-index.xml`
+   (URL completa: `https://www.mariapaularamirez-web.workers.dev/sitemap-index.xml`).
+8. Pide indexación: usa **"Inspección de URL"** con la URL de inicio → **"Solicitar indexación"**.
+
+### 2. Google Business Profile (clave para búsquedas locales)
+
+Crea la ficha del despacho en <https://business.google.com> (categoría: "Abogada" /
+"Servicios jurídicos"). Es lo que hace aparecer el negocio en Google Maps y en «abogada cerca de
+mí». Verificación por teléfono o vídeo; puede tardar unos días.
+
+### 3. Bing Webmaster Tools (incluye Copilot)
+
+Entra en <https://www.bing.com/webmasters> → añade el sitio. Puedes importarlo directamente
+desde Search Console o verificar con la etiqueta `msvalidate.01` (pégala en
+`bingSiteVerification` de `src/data/site.ts` y vuelve a desplegar). Envía el mismo sitemap.
+
+### 4. Contenido (la palanca más fuerte a medio plazo)
+
+Publicar **1-2 artículos al mes** en el blog. Con responder dudas reales de clientes
+(«¿cuánto tarda una tutela?», «¿qué necesito para divorciarme?») se gana posiciones.
+
+### 5. ⚠️ Importante: `workers.dev` y el dominio propio
+
+El subdominio `*.workers.dev` es gratuito y funciona, pero **no es ideal para SEO**: es un
+dominio compartido y Google suele darle menos autoridad que a un dominio propio. Cuando puedas,
+**compra un dominio** (p. ej. `mariapaularamirez.com`, ~10 €/año). Al hacerlo:
+
+1. Cloudflare Dashboard → **Workers & Pages** → Worker `www` → **Settings → Domains & Routes** →
+   **Add custom domain**.
+2. Actualiza `site` en `astro.config.mjs`, `url` en `src/data/site.ts` y el Sitemap en
+   `public/robots.txt`.
+3. `npm run deploy`.
+4. Repite la verificación en Search Console con el nuevo dominio (y añade una redirección 301 del
+   `workers.dev` al dominio nuevo si quieres).
 
 ## ⚖️ Nota legal
 
